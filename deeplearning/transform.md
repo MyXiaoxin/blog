@@ -1,6 +1,12 @@
 # 1 .transform
 
-  torchvision.transforms是pytorch中的图像预处理包有很多图像预处理方法, 今天从图像维度出发, 讲一些我们经常会用到的
+  torchvision.transforms是pytorch中的图像预处理包有很多图像预处理方法, 今天从图像维度出发, 讲一些我们经常会用到的方法，比如说数据中心化（仅减均值），数据标准化（减均值，除以标准差），随机裁剪，旋转，镜像等一系列操作。一般会用到如下顺序的操作：
+
+>1.随机裁剪
+>
+>2.ToTensor
+>
+>3.数据标准化（减均值，除以标准差）
 
 -  **Resize**, 把给定的图片resize到target size
 -  **Normalize**, Normalized an tensor image with mean and standard deviation
@@ -116,6 +122,19 @@ Resize((input_image.height, input_image.width))(input_image)
 
 ### 1.4 Normalize
 
+在跑一些模型的时候，发现有如下的代码：
+
+```python
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+])
+```
+
+最后一行代码知道是对数据进行标准化，可能不知道这些数据是怎么来的，后来才知道这些数据是要自己进行计算的，计算法方法如链接[所示](code/normalize.py)。
+
 ### 1.5 Compose
 
   transforms.Compose()就是把以上提到的多个步骤整合到一起, 按顺序执行
@@ -124,5 +143,6 @@ Resize((input_image.height, input_image.width))(input_image)
 transforms.Compose([
 transforms.CenterCrop(10),
 transforms.ToTensor(),
+transforms.Normaliza()
 ])
 ```
