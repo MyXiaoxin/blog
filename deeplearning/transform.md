@@ -139,10 +139,10 @@ transform_train = transforms.Compose([
 
   transforms.Compose()就是把以上提到的多个步骤整合到一起, 按顺序执行
 
-```
+```python
 transforms.Compose([
-transforms.CenterCrop(10),
-transforms.ToTensor(),
-transforms.Normaliza()
+    transforms.CenterCrop(10),
+    transforms.ToTensor(),
+    transforms.Normaliza()
 ])
 ```
