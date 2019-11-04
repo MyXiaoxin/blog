@@ -24,7 +24,13 @@ RuntimeError: Given groups=1, weight of size 6 3 5 5, expected input[128, 1, 32,
 
 The error is basically what the message says.
 Your input has 4 channels while the first conv layer expects its input to have 1 channel.
-Change `self.cnn1` to `nn.Conv2d(in_channels=4, ...)` and try it again.
+Change `self.cnn1` to `nn.Conv2d(in_channels=4, ...)` and try it again..
+
+
+
+torch.max函数有点不太一样
+
+
 
 
 

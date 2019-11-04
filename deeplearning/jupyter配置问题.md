@@ -4,15 +4,21 @@
 
 1.安装好anaconda之后创建python环境，这个环境中可以添加自己要安装的软件。
 
+```python
 conda create -n noname python=3.7
+```
 
 2.添加ipykernel，它可以生成kernel并把它写道jupyter中
 
+```python
 pip install ipykernel
+```
 
 3.安装jupyter环境，在jupyter中使用
 
+```python
 ipykernel install --name pytorch
+```
 
 本文的配置环境有些特殊。我使用的是一个服务器（Ubuntu16.04）上的普通账户，anaconda由管理员安装在了根目录下。普通账户在使用anaconda新建虚拟环境时，产生的相关文件都在本账户的家目录下，即/home/username。但是在生成ipykernel的配置文件时，上述命令生成配置文件的路径为/usr/local/share/jupyter，显然普通账户没有权限写入，因而报错
 
