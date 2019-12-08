@@ -1429,7 +1429,7 @@ If you want to take complete control of Spring MVC, you can add your own `@Confi
     </mvc:interceptors>
 ```
 
-**==编写一个配置类（@Configuration），是WebMvcConfigurerAdapter类型；不能标注@EnableWebMvc==**;
+**编写一个配置类（@Configuration），是WebMvcConfigurerAdapter类型；不能标注@EnableWebMvc**;
 
 既保留了所有的自动配置，也能用我们扩展的配置；
 
@@ -1484,7 +1484,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 SpringBoot对SpringMVC的自动配置不需要了，所有都是我们自己配置；所有的SpringMVC的自动配置都失效了
 
-**我们需要在配置类中添加@EnableWebMvc即可；**
+我们需要在配置类中添加**@EnableWebMvc**即可；
 
 ```java
 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
@@ -1500,6 +1500,12 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
     }
 }
 ```
+
+网上的博客加了之后的评论：(**谁加谁傻逼很秀**)
+
+![博客](img/20191202093431.png)
+
+
 
 原理：
 
@@ -1597,9 +1603,21 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 1）、编写国际化配置文件，抽取页面需要显示的国际化消息
 
-![](images/搜狗截图20180211130721.png)
+> 多个配置文件：
+>
+> login.properties
+>
+> login_en_US.properties
+>
+> login_zh_CN.properties
 
+配置文件中的属性：（一般是页面的是**页面名字加属性名字**的方式来进行命名）
 
+```properties
+login.btn=登录
+login.password=密码
+login.rememberme=记住我
+```
 
 2）、SpringBoot自动配置好了管理国际化资源文件的组件；
 
@@ -1615,6 +1633,7 @@ public class MessageSourceAutoConfiguration {
 	 */
 	private String basename = "messages";  
     //我们的配置文件可以直接放在类路径下叫messages.properties；
+    //如果放在其他的地方，我们需要利用spring.message=i18n.login
     
     @Bean
 	public MessageSource messageSource() {
@@ -1638,7 +1657,11 @@ public class MessageSourceAutoConfiguration {
 
 3）、去页面获取国际化的值；
 
-![](images/搜狗截图20180211134506.png)
+> 在idea中，setting只是对当前项目生效，而如果想对所有项目都生效的话需要设置 settings for new project
+
+**注意：**
+
+在properties文件中写中文时要特别注意，properties文件在运行时需要转换为ascii，所以要在idea中的fileencoding要进行设置。
 
 
 
@@ -1690,6 +1713,7 @@ public class MessageSourceAutoConfiguration {
 ​	国际化Locale（区域信息对象）；LocaleResolver（获取区域信息对象）；
 
 ```java
+//默认的就是根据请求头带来的区域信息获取Locale进行国际化
 		@Bean
 		@ConditionalOnMissingBean
 		@ConditionalOnProperty(prefix = "spring.mvc", name = "locale")
@@ -1702,7 +1726,7 @@ public class MessageSourceAutoConfiguration {
 			localeResolver.setDefaultLocale(this.mvcProperties.getLocale());
 			return localeResolver;
 		}
-默认的就是根据请求头带来的区域信息获取Locale进行国际化
+
 ```
 
 4）、点击链接切换国际化
@@ -1731,13 +1755,13 @@ public class MyLocaleResolver implements LocaleResolver {
 }
 
 
- @Bean
+
+//下面的配置代码需要添加在WebMvcConfigurater的配置类中
+ 	@Bean
     public LocaleResolver localeResolver(){
         return new MyLocaleResolver();
     }
 }
-
-
 ```
 
 ### 3）、登陆
@@ -1746,14 +1770,12 @@ public class MyLocaleResolver implements LocaleResolver {
 
 1）、禁用模板引擎的缓存
 
-```
+```properties
 # 禁用缓存
 spring.thymeleaf.cache=false 
 ```
 
 2）、页面修改完成以后ctrl+f9：重新编译；
-
-
 
 登陆错误消息的显示
 
