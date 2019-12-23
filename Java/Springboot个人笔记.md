@@ -2144,6 +2144,7 @@ insert的公共片段在div标签中
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class BasicErrorController extends AbstractErrorController {
     
+    //在这儿会有两种类型的数据，可能会产生html数据，也可能会产生JSON数据
     @RequestMapping(produces = "text/html")//产生html类型的数据；浏览器发送的请求来到这个方法处理
 	public ModelAndView errorHtml(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -2173,7 +2174,8 @@ public class BasicErrorController extends AbstractErrorController {
 
 ```java
 	@Value("${error.path:/error}")
-	private String path = "/error";  系统出现错误以后来到error请求进行处理；（web.xml注册的错误页面规则）
+	private String path = "/error";
+	//系统出现错误以后来到error请求进行处理；（web.xml注册的错误页面规则）
 ```
 
 
