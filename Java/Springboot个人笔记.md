@@ -2119,10 +2119,12 @@ insert的公共片段在div标签中
 
   	给容器中添加了以下组件
 
+（DefaultErrorAttributes;BasicErrorController;ErrorPageCustomizer;DefaultErrorViewResolver）
+
 ​	1、DefaultErrorAttributes：
 
 ```java
-帮我们在页面共享信息；
+//帮我们在页面共享信息；
 @Override
 	public Map<String, Object> getErrorAttributes(RequestAttributes requestAttributes,
 			boolean includeStackTrace) {
@@ -2237,7 +2239,7 @@ protected ModelAndView resolveErrorView(HttpServletRequest request,
 
 ​			**1）、有模板引擎的情况下；error/状态码;** 【将错误页面命名为  错误状态码.html 放在模板引擎文件夹里面的 error文件夹下】，发生此状态码的错误就会来到  对应的页面；
 
-​			我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，精确优先（优先寻找精确的状态码.html）；		
+​			我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，**精确优先**（优先寻找精确的状态码.html）；		
 
 ​			页面能获取的信息；
 
@@ -2253,7 +2255,7 @@ protected ModelAndView resolveErrorView(HttpServletRequest request,
 
 ​				errors：JSR303数据校验的错误都在这里
 
-​			2）、没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找；
+​			2）、没有模板引擎（模板引擎找不到这个错误页面），**静态资源**文件夹下找；(**static/public/resources**)
 
 ​			3）、以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面；
 
@@ -2268,7 +2270,7 @@ protected ModelAndView resolveErrorView(HttpServletRequest request,
 public class MyExceptionHandler {
 
     @ResponseBody
-    @ExceptionHandler(UserNotExistException.class)
+    @ExceptionHandler(UserNotExistException.class)//使用这种异常捕获形式
     public Map<String,Object> handleException(Exception e){
         Map<String,Object> map = new HashMap<>();
         map.put("code","user.notexist");
@@ -2276,7 +2278,7 @@ public class MyExceptionHandler {
         return map;
     }
 }
-//没有自适应效果...
+//没有自适应效果...（浏览器和POSTMAN访问都是JSON）
 ```
 
 
