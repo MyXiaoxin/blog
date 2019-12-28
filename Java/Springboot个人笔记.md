@@ -2386,9 +2386,10 @@ ServletRegistrationBean
 
 ```java
 //注册三大组件
-@Bean
+@Bean//一定要加在容器中
 public ServletRegistrationBean myServlet(){
-    ServletRegistrationBean registrationBean = new ServletRegistrationBean(new MyServlet(),"/myServlet");
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(new MyServlet(),"/myServlet");//类和要拦截的路径
+    //先写一个MyServlet的类，然后使用ServletRegistationBean注册一下
     return registrationBean;
 }
 
@@ -2680,7 +2681,7 @@ ServerProperties也是定制器
 
 
 
-###5）、嵌入式Servlet容器启动原理；
+### 5）、嵌入式Servlet容器启动原理；
 
 什么时候创建嵌入式的Servlet容器工厂？什么时候获取嵌入式的Servlet容器并启动Tomcat；
 
@@ -2774,7 +2775,7 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 
 **先启动嵌入式的Servlet容器，再将ioc容器中剩下没有创建出的对象获取出来；**
 
-**==IOC容器启动创建嵌入式的Servlet容器==**
+**IOC容器启动创建嵌入式的Servlet容器**
 
 
 
@@ -2941,7 +2942,7 @@ public ConfigurableApplicationContext run(String... args) {
 }
 ```
 
-**==启动Servlet容器，再启动SpringBoot应用==**
+**启动Servlet容器，再启动SpringBoot应用**
 
 # 六、SpringBoot与数据访问
 
