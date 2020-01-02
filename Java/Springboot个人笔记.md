@@ -3200,6 +3200,7 @@ static class Generic {
    public DataSource dataSource(DataSourceProperties properties) {
        //使用DataSourceBuilder创建数据源，利用反射创建响应type的数据源，并且绑定相关属性
       return properties.initializeDataSourceBuilder().build();
+       //使用建造者模式，什么是建造者模式？
    }
 
 }
