@@ -1,6 +1,6 @@
 1、windows开启端口
 
-netsh firewall add portopening TCP 8080 MyWebPort
+netsh firewall add portopening TCP 8888 MyWebPort
 
 2、删除端口
 

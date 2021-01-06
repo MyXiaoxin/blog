@@ -28,6 +28,10 @@
 ## IDE：
 
 - IDEA：感觉比Eclipse好用的一款开发JavaEE的IDE
+  - Ctrl+F12:搜索类内方法
+  - Alt+Enter:提示或者补全
+  - Ctrl+O:实现或者覆盖方法
+  - Alt+Insert:生成构造器或者getter、setter方法
 - PyCharm：可以连接远程服务器
 - Dev C++：c++开发工具
 - Goland:Go开发IDE
@@ -37,6 +41,7 @@
 - vs code
   - remote SSH 插件        可以远程修改服务器上的文件，轻量级pycharm
 - sublime text
+  - 修改配置文件，打开文件速度和notepad一样快
 
 ## 学习资料
 
@@ -77,13 +82,17 @@
 4.面试
 
 - 程序员面试宝典
-
 - 剑指offer
-
 - 编程之美——微软技术面试心得
-
 - 编程珠玑
-
 - Java程序员面试宝典
+- 
 
-  
+## 3.博客或者其它技术团队
+
+[美团技术团队](https://tech.meituan.com/)
+
+## 4.网址
+
+- [draw.io](https://app.diagrams.net/)
+

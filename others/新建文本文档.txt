@@ -1,0 +1,5 @@
+wsl --export Ubuntu D:\WSL\Ubuntu.tar
+wsl --unregister Ubuntu
+wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar
+del D:\WSL\Ubuntu.tar
+rmdir /s /q "C:\Users\用户名\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc"
